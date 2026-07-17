@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GoldPulse Core v25.0 | Master Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #030303; color: #EAEAEA; }
+        .gold-border { border: 1px solid rgba(212, 175, 55, 0.25); }
+        .gold-glow { box-shadow: 0 0 35px rgba(212, 175, 55, 0.15); }
+        .gold-text { color: #D4AF37; }
+        .glass-panel { background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(10px); }
+        .whatsapp-btn { background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 12px; }
+        .profit { color: #00ff88; }
+        .loss { color: #ff4444; }
+    </style>
+</head>
+<body class="p-4 max-w-md mx-auto pb-28">
+
+    <!-- MAIN CONTROL HEADER -->
+    <div class="flex justify-between items-center mb-4 glass-panel p-4 rounded-2xl gold-border gold-glow">
+        <div>
+            <h1 class="text-xs font-black tracking-widest text-white uppercase">GoldPulse Core v25.0</h1>
+            <p class="text-[9px] text-zinc-500 uppercase font-bold">Bridge Status: Active</p>
+        </div>
+        <a href="https://wa.me/256702095647" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> 0702095647
+        </a>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div id="home-page" class="page-section active">
+        
+        <!-- TRANSACTION LEDGER -->
+        <div class="glass-panel p-4 rounded-2xl gold-border mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="text-[10px] font-black uppercase text-zinc-400">Apex Transaction Ledger</h3>
+                <button onclick="copyLedger()" class="text-zinc-500 hover:text-white transition-colors">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <table id="ledger-table" class="w-full text-[10px] font-mono">
+                <thead>
+                    <tr class="text-zinc-500 border-b border-zinc-800">
+                        <th class="text-left pb-2">Time</th>
+                        <th class="text-left pb-2">Pair</th>
+                        <th class="text-right pb-2">Result</th>
+                    </tr>
+                </thead>
+                <tbody id="apex-ledger-body">
+                    <tr class="border-b border-zinc-900">
+                        <td class="py-2">11:30</td>
+                        <td class="py-2">XAU/USD</td>
+                        <td class="py-2 text-right profit">+$450.00</td>
+                    </tr>
+                    <tr class="border-b border-zinc-900">
+                        <td class="py-2">12:15</td>
+                        <td class="py-2">XAU/USD</td>
+                        <td class="py-2 text-right loss">-$120.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- REFERRAL SECTION -->
+        <div class="glass-panel p-4 rounded-2xl gold-border mb-4">
+            <h3 class="text-[10px] font-black uppercase text-zinc-400 mb-3">Your Referral Link</h3>
+            <div class="flex items-center bg-zinc-900 p-2 rounded-lg border border-zinc-800">
+                <input type="text" id="referral-link" value="https://goldpulse.com/ref/trevor" readonly class="bg-transparent font-mono text-xs text-white w-full outline-none px-2">
+                <button onclick="copyReferral()" class="text-zinc-400 hover:text-white px-2 transition-colors">
+                    <i class="fas fa-clone"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT CONTROLS AND API SCRIPTS -->
+    <script>
+        // Copy Ledger Data to Clipboard
+        function copyLedger() {
+            const table = document.getElementById("ledger-table");
+            let text = "Transaction History:\n";
+            for (let i = 1; i < table.rows.length; i++) {
+                let row = table.rows[i];
+                text += `${row.cells[0].innerText} | ${row.cells[1].innerText} | ${row.cells[2].innerText}\n`;
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Ledger copied!");
+            }).catch(err => {
+                console.error("Failed to copy clipboard: ", err);
+            });
+        }
+
+        // Copy Referral Link to Clipboard
+        function copyReferral() {
+            const copyText = document.getElementById("referral-link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.widthText(copyText.value).then(() => {
+                alert("Referral link copied!");
+            }).catch(err => {
+                console.error("Failed to copy referral link: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
